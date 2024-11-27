@@ -1,0 +1,309 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+	overflow: auto;
+	overflow-y: auto;
+}
+
+.container {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+	margin: 20px auto;
+    overflow-y: auto;
+}
+
+.container.register-container {
+    margin-top: 10%;
+    width: 100%;
+    width: 600px;
+    padding: 20px;
+}
+
+.register-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 35px;
+    font-weight: 700;
+    color: #ff5722;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 30%
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #ff5722;
+    margin-bottom: 8px;
+}
+
+.form-input {
+    width: 450px; /* Changé de 100% à 450px */
+    padding: 12px;
+    background-color: #2a2a2a;
+    border: 1px solid #3e3e3e;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.password-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 450px;
+}
+
+.password-wrapper input[type="password"],
+.password-wrapper input[type="text"] {
+    width: 100%;
+    padding-right: 40px; /* Espace pour le bouton */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background-color: #ff5722;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-password:hover {
+    background-color: #ff7043;
+}
+
+.toggle-password i {
+    font-size: 14px;
+}
+
+.form-actions {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-primary {
+    background-color: #ff5722;
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-family: 'Roboto', sans-serif;
+    width: 450px; /* Changé pour correspondre à la largeur des inputs */
+}
+
+.btn-primary:hover {
+    background-color: #ff3d00;
+}
+
+.btn-secondary {
+    background-color: #333;
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 450px; /* Changé pour correspondre à la largeur des inputs */
+}
+
+.btn-secondary:hover {
+    background-color: #444;
+}
+
+.btn-back {
+    margin-top: 20px;
+    background-color: transparent;
+    color: #ff5722;
+    border: 2px solid #ff5722;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: center;
+}
+
+.btn-back:hover {
+    background-color: #ff5722;
+    color: #ffffff;
+}
+
+.choose-avatar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.avatars-container {
+    display: flex;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.avatars {
+    position: relative;
+    display: flex;
+    gap: 50px;
+    transition: transform 500ms;
+}
+
+.avatar-item {
+    width: 145px;
+    height: 145px;
+    background-size: cover;
+    border-radius: 90px;
+    transition: transform 500ms, opacity 500ms, box-shadow 500ms;
+    transition-timing-function: cubic-bezier(0.22, 0.11, 0.67, 0.55);
+    opacity: 0.5;
+}
+
+.left, .right {
+    position: absolute;
+    width: 35px;
+    height: 50px;
+    z-index: 2;
+    cursor: pointer;
+    background-color: rgba(255, 87, 34, 0.7);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.left {
+    left: 10px;
+}
+
+.right {
+    right: 10px;
+}
+
+.left::before, .right::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}
+
+.left::before {
+    border-right: 15px solid white;
+}
+
+.right::before {
+    border-left: 15px solid white;
+}
+
+.current {
+    transform: scale(1.3);
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(255, 87, 34, 0.7);
+}
+
+.current + .avatar-item,
+.current + .avatar-item + .avatar-item,
+.current:nth-child(1) + .avatar-item:last-child,
+.current:nth-last-child(2) + .avatar-item:first-child {
+    opacity: 0.7;
+    box-shadow: 0 0 15px rgba(255, 87, 34, 0.5);
+}
+.avatar-item:not(.current):not(.current + .avatar-item):not(.current + .avatar-item + .avatar-item) {
+    opacity: 0.3;
+    box-shadow: none;
+}
+
+#text-avatar {
+    display: none;
+}
+
+.current:hover #text-avatar {
+    display: block;
+}
+
+.current:hover {
+    cursor: pointer;
+    background-blend-mode: overlay;
+    background-color: rgba(13, 17, 31, 0.54);
+    place-items: center;
+    display: grid;
+}
+
+.avatars-container::before {
+    left: 0;
+    background: linear-gradient(to right, #1e1e1e, transparent);
+}
+
+.avatars-container::after {
+    right: 0;
+    background: linear-gradient(to left, #1e1e1e, transparent);
+}
+
+.unmask {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background-color: #ff5722;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.unmask:hover {
+    background-color: #ff7043;
+}
+
+.unmask i {
+    font-size: 14px;
+}
+
+#registerbutton, #registerbutton42 {
+    width: 450px;
+    margin: 0 auto;
+    display: block;
+}

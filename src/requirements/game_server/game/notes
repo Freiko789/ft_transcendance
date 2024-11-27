@@ -1,0 +1,12 @@
+
+
+
+
+
+
+
+
+Client declenche evenement quand il press w ou s ===> serveur receptionne, met a jour la position du pad et retourne la position au client
+
+controlledPad = numero du pad;
+PadMoveDown = 

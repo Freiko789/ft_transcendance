@@ -1,0 +1,181 @@
+/* CONTAINER */
+
+.container.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+    background-color: #121212; /* Ajout de cette ligne */
+    box-shadow: none;
+}
+
+/* LOGO */
+
+#logo_pong_login {
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+    width: 150px;
+    height: auto;
+}
+
+/* FORM */
+
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+    padding: 20px;
+    background: rgba(34, 34, 34, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+#loginForm p {
+    width: 100%;
+    text-align: center;
+}
+
+#loginForm label {
+    display: block;
+}
+
+#loginForm input[type="text"],
+#loginForm input[type="password"],
+.password-wrapper {
+    width: 80%;
+}
+
+.password-wrapper {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input[type="password"],
+.password-wrapper input[type="text"] {
+    width: 100%;
+}
+
+/* TITLE */
+h1.login-title {
+    font-size: 2rem;
+    color: transparent;
+    background: linear-gradient(135deg, #ff5722, #ffcc80);
+    background-clip: text;
+    -webkit-background-clip: text;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* INPUTS */
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #333;
+    border-radius: 5px;
+    color: #e0e0e0;
+    transition: border-color 0.3s ease;
+}
+
+/* BUTTONS */
+.btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #ff5722;
+    color: white;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #e64a19;
+    transform: scale(1.05);
+}
+
+.btn-outline-light {
+    background-color: transparent;
+    border: 2px solid #ff5722;
+    color: #ff5722;
+}
+
+.btn-outline-light:hover {
+    background-color: #ff5722;
+    color: white;
+}
+
+/* FOOTER */
+
+footer {
+    margin-top: 2px;
+    text-align: center;
+    color: #888888;
+    font-size: 0.9rem;
+}
+
+/* TOAST */
+.toast .toast-body {
+    color: white;
+}
+
+.toast-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#loginToast .toast-body {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+#successToast .toast-body {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.unmask {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background-color: #ff5722;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.unmask:hover {
+    background-color: #ff7043;
+}
+
+.unmask i {
+    font-size: 14px;
+}
+
+#loginForm input[type="text"],
+#loginForm
+
+#login_button, #login_with_42 {
+    max-width: 450px;
+}
+
+#create_account {
+    width: 450px;
+}

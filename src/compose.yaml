@@ -1,0 +1,255 @@
+networks:
+  42nice:
+    driver: bridge
+  db_network:
+    driver: bridge
+  monitoring_network:
+    driver: bridge
+  
+volumes:
+  postgres_data:
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ~/ftt_data/postgres_data
+  static_files:
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ~/ftt_data/static_files
+  prometheus_data:
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ~/ftt_data/prometheus_data
+
+services:
+## DEBUG UTILS ## DEBUG UTILS ## DEBUG UTILS ## DEBUG UTILS ## DEBUG UTILS ##
+  # adminer:
+  #   image: adminer:latest
+  #   container_name: "adminer"
+  #   networks:
+  #     - db_network
+  #   ports:
+  #     - "8081:8080"
+  # postman:
+  #   ## Username: kasm_user
+  #   ## Password: password
+  #   container_name: "postman"
+  #   networks:
+  #     - 42nice
+  #   shm_size: 512m
+  #   ports:
+  #     - 8082:6901
+  #   environment:
+  #     - VNC_PW=password
+  #   image: kasmweb/postman:1.16.0
+
+
+## INTERFACE ## INTERFACE ## INTERFACE ## INTERFACE ## INTERFACE ## INTERFACE ##
+  nginx:
+    build: requirements/nginx
+    container_name: "nginx"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -k https://localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      django:
+        condition: service_healthy
+      grafana:
+        condition: service_healthy
+    restart: no
+    volumes:
+      - static_files:/static
+    networks:
+      - 42nice
+    ports:
+      - "8080:443"
+
+
+  ## BACKEND ## BACKEND ## BACKEND ## BACKEND ## BACKEND ## BACKEND ##
+  django:
+    build: requirements/django
+    container_name: "django"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -k https://localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      postgresql:
+        condition: service_healthy
+      game_server:
+        condition: service_healthy
+      chat_server:
+        condition: service_healthy
+    restart: no
+    environment:
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - DJANGO_DB_NAME=${DJANGO_DB_NAME}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - FT_TRANSCENDENCE_HOST=${FT_TRANSCENDENCE_HOST}
+      - FT_CLIENT_ID=${FT_CLIENT_ID}
+      - FT_CLIENT_SECRET=${FT_CLIENT_SECRET}
+    volumes:
+      - static_files:/static
+    networks:
+      - 42nice
+      - db_network
+  postgresql:
+    build: requirements/postgresql
+    container_name: "postgresql"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U 42"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: no
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - db_network
+  game_server:
+    build: requirements/game_server
+    container_name: "game_server"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -k https://localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    environment:
+      - WIN_SCORE=${WIN_SCORE}
+    depends_on:
+      postgresql:
+       condition: service_healthy
+    restart: no
+    networks:
+      - 42nice
+    # ports:
+    #   - "8081:443"
+
+  chat_server:
+    build: requirements/chat_server
+    container_name: "chat_server"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -k https://localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      postgresql:
+       condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - 42nice
+
+  ## MONITORING ## MONITORING ## MONITORING ## MONITORING ## MONITORING ##
+  grafana:
+    build: requirements/grafana
+    container_name: "monitoring_grafana"
+    healthcheck:
+      test: ["CMD-SHELL", "curl http://localhost:3000"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      prometheus:
+        condition: service_healthy
+    restart: unless-stopped
+    environment:
+      - GRAFANA_USER_NAME=${GRAFANA_USER_NAME}
+      - GRAFANA_USER_PASSWORD=${GRAFANA_USER_PASSWORD}
+    user: "1000"
+    networks:
+      - 42nice
+      - monitoring_network
+    # ports:
+    #   - "9000:3000"
+  prometheus:
+    build: requirements/prometheus
+    container_name: "monitoring_prometheus"
+    healthcheck:
+      test: ["CMD-SHELL", "curl http://localhost:9090"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      alertmanager:
+        condition: service_healthy
+      cadvisor:
+        condition: service_healthy
+      node-exporter:
+        condition: service_healthy
+    restart: unless-stopped
+    volumes:
+      - prometheus_data:/prometheus/data
+    networks:
+      - monitoring_network
+    # ports:
+    #   - "9400:9090"
+  alertmanager:
+    build: requirements/alertmanager
+    container_name: "monitoring_alertmanager"
+    healthcheck:
+      test: ["CMD-SHELL", "curl http://localhost:9093"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    environment:
+      - DISCORD_WEBHOOK_URL="${DISCORD_WEBHOOK_URL}"
+    networks:
+      - monitoring_network
+    # ports:
+    # - "9300:9093"
+  node-exporter:
+    build: requirements/node-exporter
+    container_name: "monitoring_node-exporter"
+    healthcheck:
+      test: ["CMD-SHELL", "curl http://localhost:9100"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+      - /:/host:ro,rslave
+    networks:
+      - monitoring_network
+    # ports:
+    #   - "9100:9100"
+  cadvisor:
+    build: requirements/cadvisor
+    container_name: "monitoring_cadvisor"
+    restart: unless-stopped
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+      - /etc/machine-id:/etc/machine-id:ro
+    command:
+      - '-housekeeping_interval=15s'
+      - '-docker_only=true'
+      - '-store_container_labels=false'
+    devices:
+      - /dev/kmsg
+    privileged: true
+    networks:
+      - monitoring_network
+    # ports:
+    #   - "9200:8080"

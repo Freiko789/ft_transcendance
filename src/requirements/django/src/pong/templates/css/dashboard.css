@@ -1,0 +1,636 @@
+/* MAIN BODY */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#ft_transcendence {
+    width: 100%;
+}
+
+html, body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* DASHBOARD */
+
+.logo {
+    margin-top: 15px;
+    width: 50px;
+    height: auto;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+#img_profile_pic {
+    width: 50px;
+    position: relative;
+    transition: transform 0.3s ease;
+    border: 2px solid #FF8C00;
+    object-fit: cover;
+}
+
+.logo:hover {
+    filter: brightness(1.2);
+    transform: scale(1.05);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: rgba(34, 34, 34, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* DASHBOARD CONTAINER */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* CONTENT */
+.content {
+    display: flex;
+    height: calc(100vh - 60px);
+    overflow: hidden;
+    width: 100%;
+}
+
+/* FRIENDS LIST */
+.sidebar {
+    width: 15%;
+    min-width: 150px;
+    background: rgba(34, 34, 34, 0.8);
+    padding: 10px;
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.title-friends {
+    font-size: 2.5rem;
+    color: #FF8C00;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.list-group {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list-group-item {
+    background: rgba(34, 34, 34, 0.7);
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    color: white;
+    border: 1px solid transparent;
+}
+
+.list-group-item+.list-group-item {
+    border-top-width: 1px;
+}
+
+.list-group-item:hover {
+    background: rgba(98, 98, 98, 0.7);
+    transform: translateY(-2px);
+    border-color: #FF8C00;
+}
+
+.list-group-item.disabled {
+    opacity: 0.6;
+    background-color: rgba(34, 34, 34, 0.9);
+    cursor: not-allowed;
+    position: relative;
+    pointer-events: none;
+}
+
+.list-group-item.disabled::before {
+    content: "\1F6AB"; /* 🚫 */
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+    color: #dc3545;
+}
+
+.list-group-item.disabled span:last-child {
+    margin-left: 30px;
+    color: #dc3545;
+}
+
+.list-group-item.disabled:hover {
+    background: rgba(34, 34, 34, 0.9);
+    transform: none;
+}
+
+/* GAME CONTAINER */
+.game-container {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(34, 34, 34, 0.8);
+    padding: 5px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); */
+}
+
+iframe#pong {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+/* CHAT CONTAINER */
+.chat-container {
+    width: 15%;
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+    background: rgba(34, 34, 34, 0.8);
+    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.title-chat {
+    font-size: 2.5rem;
+    color: #FF8C00;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.chat-log {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background: rgba(34, 34, 34, 0.7);
+}
+
+/* CHAT CONTAINER ET CHAT PRIVÉ */
+.input-container,
+.input-container2 {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    background: rgba(34, 34, 34, 0.8);
+    border-radius: 25px;
+    border: 1px dashed #555;
+    margin: 7px;
+}
+
+#message-input,
+[id^="message-input-"] {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    background: transparent;
+    color: #e0e0e0;
+    font-size: 14px;
+    resize: none;
+}
+
+#message-input::placeholder,
+[id^="message-input-"]::placeholder {
+    color: #888;
+}
+
+#send-button,
+[id^="send-button-"] {
+    width: clamp(30px, 3vw, 36px);
+    height: clamp(30px, 3vw, 36px); 
+    background-color: #FF8C00;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    margin: 0 5px;
+    padding: 0;
+    color: white;
+    font-size: clamp(14px, 1.5vw, 18px);
+    position: relative;
+}
+
+#send-button:hover,
+[id^="send-button-"]:hover {
+    background-color: #FFA500;
+}
+
+/* CHAT */
+.username-link {
+    color: #FF8C00;
+    font-weight: 700;
+}
+
+/* ONLINE STATUS */
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.status-dot.online {
+    background-color: #28a745;
+}
+
+.status-dot.offline {
+    background-color: #dc3545;
+}
+
+/* CHAT PRIVÉ */
+.offcanvas-end {
+    background-color: #1E1E1E; /* Légèrement plus clair que le fond principal */
+    color: #e0e0e0;
+    width: 300px;
+}
+
+.offcanvas-header {
+    background: rgba(255, 140, 0, 0.2); /* Teinte orange transparente */
+    padding: 10px;
+    border-bottom: 2px solid #FF8C00; /* Bordure orange */
+}
+
+.offcanvas-body {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 56px); /* Hauteur totale moins la hauteur du header */
+}
+
+#private-chats-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.offcanvas-title {
+    font-size: 2.5rem;
+    color: #FF8C00; /* Orange pour correspondre au thème */
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.chat-container2 {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    background: rgba(34, 34, 34, 0.7);
+}
+
+.chat-log2 {
+    padding: 10px;
+    overflow-y: auto;
+    background: rgba(34, 34, 34, 0.7);
+}
+
+/* Ajustement pour le bouton de fermeture */
+.btn-close {
+    color: #e0e0e0;
+    opacity: 0.8;
+}
+
+.btn-close:hover {
+    opacity: 1;
+}
+
+#footer-dashboard {
+    background-color: rgba(34, 34, 34, 0.9)
+}
+
+/* Style commun pour friendDropdown et friendDropdown_chat */
+.dropdown-menu, .dropdown-menu_chat {
+    position: absolute;
+    background-color: #1E1E1E;
+    border: 1px solid #FF8C00;
+    border-radius: 5px;
+    padding: 5px 0;
+    min-width: 150px;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-menu .dropdown-item, .dropdown-menu_chat .dropdown-item {
+    display: block;
+    padding: 8px 15px;
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu .dropdown-item:hover, .dropdown-menu_chat .dropdown-item:hover {
+    background-color: rgba(255, 140, 0, 0.2);
+    color: #FF8C00;
+}
+
+/* FRIENDS SECTIONS */
+.friends-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: calc(100% - 60px); /* Hauteur totale moins le titre */
+    overflow-y: auto;
+}
+
+.friends-section {
+    background: rgba(34, 34, 34, 0.9);
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.friends-section h3 {
+    color: #FF8C00;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 140, 0, 0.3);
+    padding-bottom: 5px;
+}
+
+/* Style spécifique pour les demandes en attente */
+.pending-request {
+    background: rgba(34, 34, 34, 0.7);
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(255, 140, 0, 0.2);
+}
+
+.pending-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.accept-btn, .reject-btn {
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.accept-btn {
+    background: #28a745;
+    color: white;
+}
+
+.reject-btn {
+    background: #dc3545;
+    color: white;
+}
+
+.accept-btn:hover, .reject-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Style spécifique pour les utilisateurs bloqués */
+.blocked-user {
+    background: rgba(34, 34, 34, 0.7);
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+.unblock-btn {
+    background: #FF8C00;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background-color 0.2s ease;
+}
+
+.unblock-btn:hover {
+    background: #FFA500;
+}
+
+/* Scrollbar personnalisée pour friends-sections */
+.friends-sections::-webkit-scrollbar {
+    width: 6px;
+}
+
+.friends-sections::-webkit-scrollbar-track {
+    background: rgba(34, 34, 34, 0.5);
+    border-radius: 3px;
+}
+
+.friends-sections::-webkit-scrollbar-thumb {
+    background: #FF8C00;
+    border-radius: 3px;
+}
+
+.friends-sections::-webkit-scrollbar-thumb:hover {
+    background: #FFA500;
+}
+
+/* Ajustement des sections pour le responsive */
+@media (max-width: 768px) {
+    .friends-section h3 {
+        font-size: 1rem;
+    }
+
+    .pending-actions {
+        gap: 0.25rem;
+    }
+
+    .accept-btn, .reject-btn {
+        width: 20px;
+        height: 20px;
+        font-size: 0.8rem;
+    }
+
+    .unblock-btn {
+        padding: 2px 6px;
+        font-size: 0.7rem;
+    }
+}
+
+/* FRIENDS TABS */
+.friends-tabs {
+    display: flex;
+    gap: 2px;
+    background: rgba(34, 34, 34, 0.9);
+    padding: 5px 5px 0;
+    border-radius: 8px 8px 0 0;
+}
+
+.tab-button {
+    flex: 1;
+    padding: 8px 12px;
+    background: rgba(34, 34, 34, 0.7);
+    border: none;
+    border-radius: 8px 8px 0 0;
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.tab-button:hover {
+    background: rgba(255, 140, 0, 0.1);
+    color: #FF8C00;
+}
+
+.tab-button.active {
+    background: #FF8C00;
+    color: white;
+}
+
+.tab-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #FF8C00;
+}
+
+/* FRIENDS CONTENT */
+.friends-content {
+    background: rgba(34, 34, 34, 0.9);
+    border-radius: 0 0 8px 8px;
+    height: calc(100% - 110px); /* Ajuster selon vos besoins */
+    overflow: hidden;
+}
+
+.tab-content {
+    display: none;
+    height: 100%;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Scrollbar pour le contenu des onglets */
+.tab-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.tab-content::-webkit-scrollbar-track {
+    background: rgba(34, 34, 34, 0.5);
+}
+
+.tab-content::-webkit-scrollbar-thumb {
+    background: #FF8C00;
+    border-radius: 3px;
+}
+
+.tab-content::-webkit-scrollbar-thumb:hover {
+    background: #FFA500;
+}
+
+/* Style des éléments de liste */
+.list-group-item {
+    margin: 5px 0;
+    padding: 10px;
+    background: rgba(34, 34, 34, 0.7);
+    border: 1px solid rgba(255, 140, 0, 0.2);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Styles spécifiques pour les demandes en attente */
+.pending-request {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pending-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.accept-btn, .reject-btn {
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.accept-btn {
+    background: #28a745;
+    color: white;
+}
+
+.reject-btn {
+    background: #dc3545;
+    color: white;
+}
+
+/* Style pour les utilisateurs bloqués */
+.blocked-user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.unblock-btn {
+    background: #FF8C00;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .tab-button {
+        font-size: 0.8rem;
+        padding: 6px 8px;
+    }
+    
+    .friends-content {
+        height: calc(100% - 100px);
+    }
+}

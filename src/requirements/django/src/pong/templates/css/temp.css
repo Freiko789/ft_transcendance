@@ -1,0 +1,401 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400,500,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+h1.login-title {
+    font-size: 2.5rem;
+    color: transparent;
+    background: linear-gradient(135deg, #ff5722, #ffcc80);
+    background-clip: text;
+    -webkit-background-clip: text;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: rgba(34, 34, 34, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.logo {
+    margin-top: 30px;
+    width: 120px;
+    height: auto;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    filter: brightness(1.2);
+    transform: scale(1.05);
+}
+
+.logo::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50%;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: rotateShiny 4s infinite linear;
+    z-index: -1;
+}
+
+.logo:hover::before {
+    opacity: 1;
+}
+
+@keyframes rotateShiny {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.profile-container {
+    margin-left: auto;
+}
+
+.profile-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 250px;
+    background: rgba(34, 34, 34, 0.8);
+    padding: 10px;
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.list-group {
+    list-style-type: none;
+    padding: 0;
+}
+
+.list-group-item {
+    background: rgba(34, 34, 34, 0.7);
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.list-group-item:hover {
+    background: rgba(98, 98, 98, 0.7);
+}
+
+.title-friends, .title-chat {
+    font-size: 1.5rem;
+    color: #ff5722;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.title-register {
+    font-size: 2.5rem;
+    color: #ff5722;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 30px;
+}
+
+.game-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(34, 34, 34, 0.8);
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+}
+
+.chat-container {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    background: rgba(34, 34, 34, 0.8);
+    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.chat-log {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background: rgba(34, 34, 34, 0.7);
+}
+
+.input-container {
+    display: flex;
+    padding: 10px;
+}
+
+#message-input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+}
+
+#send-button {
+    padding: 10px;
+    background: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background 0.3s ease;
+}
+
+#send-button:hover {
+    background: #e64a19;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    max-width: 100%;
+    width: 400px;
+    text-align: center;
+    height: 90vh;
+}
+
+#logo_pong_login {
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+#logo_pong_login:hover {
+    transform: scale(1.05);
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #333;
+    border-radius: 5px;
+    color: #e0e0e0;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+    border-color: #ff5722;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    border-radius: 8px;
+    border: none;
+    background: #ff5722;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #e64a19;
+    transform: scale(1.05);
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.unmask {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.unmask:hover {
+    color: #ff5722;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #ff5722;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #e64a19;
+    transform: scale(1.05);
+}
+
+.btn-outline-light {
+    background-color: transparent;
+    border: 2px solid #ff5722;
+    color: #ff5722;
+}
+
+.btn-outline-light:hover {
+    background-color: #ff5722;
+    color: white;
+}
+
+.toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 11;
+}
+
+.toast-body {
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+.toast-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+    width: 100%;
+    font-weight: 500;
+}
+
+#profile-picture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 100px;
+    border: 3px solid black;
+}
+
+.img-thumbnail {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    padding: 0;
+}
+
+@media (max-width: 768px) {
+    .user-info {
+        width: 100%;
+        padding: 20px;
+    }
+}
+
+.unmask:hover {
+    color: #ff5722;
+}
+
+.choose-avatar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 30px;
+    height: 30px;
+}
+
+.choose-avatar {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.carousel-inner, .carousel-item {
+    width: 100%;
+    height: 100%;
+}
+
+.avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s ease-in-out;
+}
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+}

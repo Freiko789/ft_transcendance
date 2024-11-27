@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5",
+    "node-fetch": "^3.3.2",
+    "socket.io": "^4.7.5",
+    "three": "^0.166.0",
+    "three-orbitcontrols": "^2.110.3"
+  }
+}
