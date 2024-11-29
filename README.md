@@ -1,19 +1,20 @@
-ft_transcendance
+# ft_transcendance
 
-ft_transcendance est un projet de jeu en ligne multijoueur en temps réel, réalisé dans le cadre de la formation à l'école 42. Ce projet intègre plusieurs technologies modernes pour offrir une expérience interactive et performante, notamment Django, Grafana, Prometheus, JavaScript, Three.js, Node.js, Socket.io et Docker.
-Technologies utilisées
+**ft_transcendance** est un projet de jeu en ligne multijoueur en temps réel, développé dans le cadre de la formation à l'école 42. Il utilise une combinaison de technologies modernes pour offrir une expérience interactive et réactive.
 
-    Django : Utilisé pour la gestion du backend, la gestion des utilisateurs, et la création de l'API REST pour la communication avec le frontend.
-    Grafana & Prometheus : Ces outils sont utilisés pour surveiller et collecter des métriques sur le serveur de jeu en temps réel, permettant une analyse des performances et du trafic.
-    JavaScript & Node.js : Node.js sert de serveur pour la gestion des événements en temps réel, tandis que JavaScript est utilisé pour les interactions côté client.
-    Socket.io : Cette bibliothèque permet la communication en temps réel entre le serveur et le client, assurant ainsi une expérience fluide et réactive pour les utilisateurs du jeu.
-    Three.js : Utilisé pour la gestion des animations 3D du jeu, Three.js permet de créer un environnement de jeu dynamique et interactif.
-    Docker : Le projet est conteneurisé avec Docker pour une configuration simplifiée et une gestion des dépendances claire, assurant une portabilité optimale.
+## 🚀 Technologies utilisées
 
-Fonctionnalités
+- **Django** : Backend pour la gestion des utilisateurs et de l'API REST.
+- **Grafana & Prometheus** : Outils de surveillance des performances du serveur de jeu.
+- **JavaScript & Node.js** : Gestion des événements en temps réel côté serveur et client.
+- **Socket.io** : Communication en temps réel entre serveur et client.
+- **Three.js** : Rendu 3D et animations pour une expérience visuelle immersive.
+- **Docker** : Conteneurisation pour une gestion simplifiée des dépendances et une portabilité maximale.
 
-    Multijoueur en temps réel : Les joueurs peuvent se connecter simultanément et interagir en temps réel dans le monde virtuel du jeu.
-    Gestion des utilisateurs : Système de connexion et d'inscription sécurisé, avec gestion des statistiques des utilisateurs (victoires, défaites, etc.).
-    Surveillance des performances : Grafana et Prometheus sont utilisés pour surveiller la performance du serveur de jeu et générer des rapports de trafic et de performance.
-    Interface 3D interactive : Grâce à Three.js, le jeu propose un environnement visuel riche en 3D avec des animations fluides et dynamiques.
-    Chat en temps réel : Les joueurs peuvent discuter entre eux en utilisant un système de chat intégré, géré par Socket.io.
+## 🎮 Fonctionnalités
+
+- **Multijoueur en temps réel** : Interaction entre plusieurs joueurs dans un environnement de jeu dynamique.
+- **Gestion des utilisateurs** : Système d'inscription et de connexion, avec suivi des statistiques (victoires, défaites, etc.).
+- **Surveillance des performances** : Visualisation des données de trafic et de performance via Grafana.
+- **Interface 3D interactive** : Animations et rendu 3D fluide avec Three.js.
+- **Chat en temps réel** : Discussion instantanée entre joueurs grâce à Socket.io.
