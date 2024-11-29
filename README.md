@@ -20,4 +20,5 @@
 - **Surveillance des performances** : Visualisation des données de trafic et de performance via Grafana.
 - **Interface 3D interactive** : Animations et rendu 3D fluide avec Three.js, avec des modèles créés sous Blender.
 - **Chat en temps réel** : Discussion instantanée entre joueurs grâce à Socket.io.
+- 
 ![Sans titre](https://github.com/user-attachments/assets/174d0a7f-bacf-414d-bd8b-332caa0fc597)
